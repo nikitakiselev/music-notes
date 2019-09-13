@@ -3,10 +3,38 @@
 <head>
     <title>Music</title>
     <link rel="stylesheet" type="text/css" href="app.css">
+    <style>
+        .application {
+            width: 1000px;
+            margin: 30px auto;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+        }
+
+        .message {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .message.default {
+            color: black;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-<div id="app">
+<div id="app" class="application">
 
+    <p id="notes"></p>
+    <div id="paper"></div>
+    <div id="message" class="message"></div>
 </div>
 
 <script src="app.js"></script>
