@@ -7,7 +7,9 @@ const TEXT_CORRECT = 'Correct';
 const TEXT_INCORRECT = 'Incorrect';
 
 let NOTES_TO_LEARN = [
-    'B', 'b', 'b\'',
+    'B:treble', 'b:treble', 'b\':treble',
+    'G:treble',
+    'F,:bass',
 ];
 
 let message = new Message(
@@ -18,6 +20,8 @@ let sheet = new MusicSheet();
 let currentNote = sheet.drawRandomNote(NOTES_TO_LEARN, () => {
     message.text(TEXT_PRESS_THE_KEY);
 });
+
+console.log(`Current note: ${currentNote}`);
 
 let midi = new MIDI(navigator);
 midi.onKeyDown(keyCode => {

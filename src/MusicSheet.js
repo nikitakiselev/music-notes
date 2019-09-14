@@ -17,6 +17,10 @@ class MusicSheet {
         return abc;
     }
 
+    setClef(clef) {
+        this.clef = clef;
+    }
+
     clear() {
         this.chars = [];
     }
@@ -35,15 +39,20 @@ class MusicSheet {
         let index = Math.floor(Math.random() * notes.length);
         let currentNote = notes[index];
 
+        let array = currentNote.split(':');
+        let note = array[0];
+        let clef = array[1];
+
         this.clear();
-        this.push(currentNote);
+        this.setClef(clef);
+        this.push(note);
         this.render();
 
         if (callback) {
             callback();
         }
 
-        return currentNote;
+        return note;
     }
 }
 

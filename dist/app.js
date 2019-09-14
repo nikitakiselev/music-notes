@@ -17853,6 +17853,11 @@ function () {
       return abc;
     }
   }, {
+    key: "setClef",
+    value: function setClef(clef) {
+      this.clef = clef;
+    }
+  }, {
     key: "clear",
     value: function clear() {
       this.chars = [];
@@ -17874,15 +17879,19 @@ function () {
     value: function drawRandomNote(notes, callback) {
       var index = Math.floor(Math.random() * notes.length);
       var currentNote = notes[index];
+      var array = currentNote.split(':');
+      var note = array[0];
+      var clef = array[1];
       this.clear();
-      this.push(currentNote);
+      this.setClef(clef);
+      this.push(note);
       this.render();
 
       if (callback) {
         callback();
       }
 
-      return currentNote;
+      return note;
     }
   }]);
 
@@ -17911,12 +17920,13 @@ __webpack_require__.r(__webpack_exports__);
 var TEXT_PRESS_THE_KEY = 'Press the key on your keyboard...';
 var TEXT_CORRECT = 'Correct';
 var TEXT_INCORRECT = 'Incorrect';
-var NOTES_TO_LEARN = ['B', 'b', 'b\''];
+var NOTES_TO_LEARN = ['B:treble', 'b:treble', 'b\':treble', 'G:treble', 'F,:bass'];
 var message = new _FlashMessage__WEBPACK_IMPORTED_MODULE_2__["default"](document.getElementById('message'));
 var sheet = new _MusicSheet__WEBPACK_IMPORTED_MODULE_1__["default"]();
 var currentNote = sheet.drawRandomNote(NOTES_TO_LEARN, function () {
   message.text(TEXT_PRESS_THE_KEY);
 });
+console.log("Current note: ".concat(currentNote));
 var midi = new _MIDI__WEBPACK_IMPORTED_MODULE_0__["default"](navigator);
 midi.onKeyDown(function (keyCode) {
   var playedNote = _MIDI__WEBPACK_IMPORTED_MODULE_0__["default"].getNoteByKey(keyCode);
